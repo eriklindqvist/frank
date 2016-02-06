@@ -1,0 +1,13 @@
+var Device = React.createClass({
+  displayName: 'Device',
+
+  render: function () {
+    return React.createElement(
+      'div',
+      { className: 'device' },
+      this.props.name,
+      ' - ',
+      this.props.status ? 'on' : 'off'
+    );
+  }
+});
