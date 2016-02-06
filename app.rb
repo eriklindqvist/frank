@@ -6,7 +6,7 @@ end
 
 get '/devices' do
   content_type :json
-  out = `ssh pi@raspberry 'tdtool -l | head -n 25'`
+  out = `ssh pi@raspberry 'tdtool -l'`
   num_devices = out.match(/Number of devices: ([0-9].)/)[1].to_i
   out.lines[1..num_devices].map { |l|
     cols = l.chomp.split("\t")
