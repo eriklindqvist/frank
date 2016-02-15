@@ -6,9 +6,10 @@ div = React.DOM.div;
 Device = React.createClass({
   displayName: 'Device',
   render: function() {
-    var ref;
-    return div(null, this.props.name + " - " + ((ref = this.props.status) != null ? ref : {
-      'on': 'off'
-    }));
+    var s;
+    s = this.props.status ? 'on' : 'off';
+    return div({
+      className: s
+    }, "" + this.props.name);
   }
 });

@@ -11,3 +11,20 @@ button.focus {
   border: 1px solid #31f;
   background-color: #ccf;
 }
+
+.on, .off {
+  border: 1px solid #666;
+  width: 200px;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.on {
+  background-color: #aaa;
+}
+
+.off {
+  background-color: #ccc;
+}

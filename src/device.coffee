@@ -3,4 +3,5 @@
 Device = React.createClass
   displayName: 'Device'
   render: ->
-    div null, "#{@props.name} - #{@props.status ? 'on' : 'off'}"
+    s = if @props.status then 'on' else 'off'
+    div className:s, "#{@props.name}"
