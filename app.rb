@@ -1,12 +1,14 @@
 require 'rubygems'
 
+set :ssh, "ssh #{ENV['TDTOOL_USER']}@#{ENV['TDTOOL_HOST']}"
+
 get '/' do
   send_file File.join(settings.public_folder, 'index.html')
 end
 
 get '/devices' do
   content_type :json
-  out = `ssh pi@raspberry2 'tdtool -l'`
+  out = `#{settings.ssh} 'tdtool -l'`
   num_devices = out.match(/Number of devices: ([0-9].)/)[1].to_i
   out.lines[1..num_devices].map { |l|
     cols = l.chomp.split("\t")
@@ -14,9 +16,12 @@ get '/devices' do
   }.to_json
 end
 
+get '/device/:id' do
+  get_device_status params[:id]
+end
+
 post '/device/:id' do
-  out = `ssh pi@raspberry2 'tdtool --list-devices | grep -e "id=#{params[:id]}\\s"'`
-  out.split("=").last.downcase
+  get_device_status params[:id]
 end
 
 post '/device' do
@@ -28,7 +33,7 @@ post '/device' do
     return [403, 'invalid status']
   end
 
-  `ssh pi@raspberry2 'tdtool -#{status} #{params[:id]}'`
+  `#{settings.ssh} 'tdtool -#{status} #{params[:id]}'`
 end
 
 def on? str
@@ -37,4 +42,8 @@ end
 
 def off? str
   str.downcase == 'off'
+end
+
+def get_device_status(id)
+  `#{settings.ssh} 'tdtool --list-devices | grep -e "id=#{id}\\s"'`.split("=").last.downcase
 end

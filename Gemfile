@@ -1,6 +1,15 @@
 source 'https://rubygems.org'
 
-gem 'shotgun'
 gem 'sinatra'
 gem 'json'
-gem 'thin'
+
+group :development do
+  gem 'shotgun'
+  gem 'thin'
+  gem 'awesome_print'
+end
+
+group :production do
+  gem 'raindrops'
+  gem 'unicorn'
+end
