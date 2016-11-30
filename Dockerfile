@@ -7,8 +7,8 @@ MAINTAINER Erik Lindqvist <erikjo82@gmail.com>
 # At the end, remove the apk cache
 RUN apk update && \
     apk upgrade && \
-    apk add linux-headers bash curl-dev ruby-dev build-base git && \
-    apk add ruby ruby-io-console ruby-bundler && \
+    apk add linux-headers bash curl-dev openssh-client build-base git && \
+    apk add ruby ruby-dev ruby-io-console ruby-bundler && \
     apk add tzdata && \
     cp /usr/share/zoneinfo/Europe/Stockholm /etc/localtime && \
     echo "Europe/Stockholm" > /etc/timezone && \
