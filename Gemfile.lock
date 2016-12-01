@@ -31,6 +31,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   json
+  raindrops
   shotgun
   sinatra
   thin

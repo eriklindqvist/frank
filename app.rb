@@ -1,6 +1,6 @@
 require 'rubygems'
 
-set :ssh, "ssh #{ENV['TDTOOL_USER']}@#{ENV['TDTOOL_HOST']}"
+set :ssh, "ssh -oStrictHostKeyChecking=no #{ENV['TDTOOL_USER']}@#{ENV['TDTOOL_HOST']}"
 
 get '/' do
   send_file File.join(settings.public_folder, 'index.html')
